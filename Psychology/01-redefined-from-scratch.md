@@ -1,5 +1,9 @@
 # Grit, redefined from scratch
 
+> **Status (2026-10-31):** design vision. Shipped commands are only `init` `status` `diff`
+> `snapshot` `log` `show` `restore` `undo` `checkout` `branch` `tag` `verify` `gc` `doctor`.
+> Every other `grit …` command in this file is **planned**, not in the binary yet.
+
 Grit is not Git with nicer commands.
 It is a local, automatic, content-deduplicated project backup system for humans and AI agents.
 
@@ -35,21 +39,26 @@ Everything else is secondary.
 
 ## Replace Git concepts entirely
 
-| Git concept    | Grit replacement |
-|----------------|------------------|
-| repository     | Vault            |
-| commit         | Checkpoint       |
-| branch         | Path             |
-| worktree       | Workspace        |
-| staging area   | Removed          |
-| index          | Removed          |
-| HEAD           | Current state    |
-| merge          | Combine          |
-| cherry-pick    | Copy change      |
-| reset          | Restore          |
-| reflog         | Recovery timeline|
-| remote         | Optional replica |
-| push/pull      | Backup/sync      |
+| Git | grit | Status |
+|---|---|---|
+| `git init` | `grit init` | shipped |
+| `git add` + `git commit` | `grit snapshot -m "…"` | shipped |
+| `git status` | `grit status` | shipped |
+| `git diff` | `grit diff` | shipped |
+| `git log` | `grit log` | shipped |
+| `git show` | `grit show` | shipped |
+| `git reset --hard` / `git checkout -- .` | `grit restore` | shipped |
+| `git reflog` + reset | `grit undo` | shipped |
+| `git branch` / `git tag` / `git checkout` | same names (transitional) | shipped |
+| `git fsck` | `grit verify` | shipped |
+| `git gc` | `grit gc` | shipped |
+| staging area / index | none — snapshot takes whole tree | by design |
+| `git merge` | `grit combine` | planned |
+| `git cherry-pick` | none yet | planned |
+| `git worktree` | `grit workspace` | planned |
+| `git push` / `git pull` | `grit backup` / `grit sync` | planned |
+
+All grit commands are lowercase verbs. "Shipped" = in the `grit` binary today.
 
 Use normal words. Do not make users learn version-control theology.
 
@@ -418,7 +427,7 @@ Rules:
 
 ## Minimal CLI
 
-### Everyday commands
+### Everyday commands (planned set — today `grit snapshot` = save, `grit log` = timeline)
 
 ```
 grit start

@@ -86,16 +86,19 @@ staging surprises.
 
 ## Command surface — small, obvious verbs
 
-| Verb | Does |
-|---|---|
-| `grit save` | snapshot current state |
-| `grit undo` | reverse the last op |
-| `grit log` | history, grain-level |
-| `grit branch` | fork a line |
-| `grit sync` | pull/push between peers |
-| `grit serve` | expose this repo over ssh/LAN (the whole "server") |
-| `grit bundle` | pack repo into one carryable file |
-| `grit why <grain>` | who/when/what changed a function |
+| Verb | Does | Status |
+|---|---|---|
+| `grit snapshot` | snapshot current state (design name: `save`) | shipped |
+| `grit undo` | reverse the last op | shipped |
+| `grit log` | history (grain-level is planned) | shipped |
+| `grit branch` | fork a line | shipped (transitional) |
+| `grit sync` | pull/push between peers | planned |
+| `grit serve` | expose this repo over ssh/LAN (the whole "server") | planned |
+| `grit bundle` | pack repo into one carryable file | planned |
+| `grit why <grain>` | who/when/what changed a function | planned |
+
+Full shipped list: `init` `status` `diff` `snapshot` `log` `show` `restore` `undo`
+`checkout` `branch` `tag` `verify` `gc` `doctor`.
 
 **AI verbs** (`grit save` auto-message, `grit ask`, `grit combine` proposals):
 see [ai-commands.md](ai-commands.md) — LLM proposes, deterministic core disposes.

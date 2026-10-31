@@ -23,6 +23,8 @@ local-first ethos.
 
 ## Concrete AI verbs
 
+**Status (2026-10-31): all AI verbs below are planned — none are in the `grit` binary yet.**
+
 | Verb | AI behavior |
 |---|---|
 | `grit save` (no message) | reads the grain diff, writes the save note itself |

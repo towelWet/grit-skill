@@ -1,5 +1,9 @@
 # Corrections to file 01 — Storage promise, no deletion
 
+> **Status (2026-10-31):** design vision. Shipped commands are only `init` `status` `diff`
+> `snapshot` `log` `show` `restore` `undo` `checkout` `branch` `tag` `verify` `gc` `doctor`.
+> Every other `grit …` command in this file (`backup`, `clean`) is **planned** or rejected.
+
 File 01 was written with sections on garbage collection, `grit clean`,
 and unreachable-object cleanup that contradict Grit's core promise.
 
