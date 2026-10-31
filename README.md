@@ -27,9 +27,14 @@ The implementation (Rust engine + CLI) lives in the project repo:
 | Rust source, build, tests | [towelWet/grit](https://github.com/towelWet/grit) |
 | Roadmap / future features | `FUTURE.md` in project repo |
 
-## Usage
+## Install
 
-Drop this directory into `~/.claude/skills/grit/` and invoke with `/grit` in Claude Code.
+```
+git clone https://github.com/towelWet/grit-skill ~/.claude/skills/grit
+```
+
+Then invoke `/grit` in Claude Code. Build the `grit` binary from
+[towelWet/grit](https://github.com/towelWet/grit) to run the commands it describes.
 
 ## License
 
