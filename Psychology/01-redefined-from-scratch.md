@@ -83,7 +83,7 @@ No commit needed. No staged state. No reflog archaeology.
 
 ### 2. Saving is automatic
 
-Grit creates checkpoints based on events:
+Grit creates snapshots based on events:
 
 * before an AI task;
 * after an AI task;
@@ -129,13 +129,13 @@ Grit records the actual project state.
 
 ### 4. No destructive history rewriting
 
-Checkpoints are immutable.
+Snapshots are immutable.
 
 You can:
 
 * restore an older state;
 * start a new path from it;
-* hide checkpoints;
+* hide snapshots;
 * compact unreachable temporary data later.
 
 You cannot silently destroy history with rebase or force push.
@@ -150,7 +150,7 @@ The filesystem may contain ten apparent project copies, but Grit stores duplicat
 
 ```
 ~/.grit/
-  vaults/
+  repos/
   objects/
   manifests/
   journals/
@@ -200,7 +200,7 @@ Not five physical repository clones.
 A Grit Workspace is an overlay, not a copied project tree.
 
 ```
-Base checkpoint
+Base snapshot
     +
 Workspace overlay
 ```
@@ -225,7 +225,7 @@ Internally:
 
 ```
 workspace/
-  base_checkpoint = abc123
+  base_snapshot = abc123
   changed_objects = [...]
   deleted_paths = [...]
   renamed_paths = [...]
@@ -258,7 +258,7 @@ policy = "local-encrypted"
 
 ### Storage policies
 
-* **tracked** — fully checkpointed
+* **tracked** — fully snapshotted
 * **chunked** — deduplicated large-file storage
 * **rebuildable** — metadata only, normally not backed up
 * **ignored** — invisible to Grit
@@ -276,13 +276,13 @@ Every agent task gets a transaction.
 ```
 Task begins
     ↓
-automatic checkpoint
+automatic snapshot
     ↓
 writes occur
     ↓
 format/build/test
     ↓
-success checkpoint   or   automatic rollback
+success snapshot   or   automatic rollback
 ```
 
 Task metadata:
@@ -291,7 +291,7 @@ Task metadata:
 task = "Port Hermes computer-use package to Rust"
 agent = "Fable"
 started_at = "2026-07-07T02:01:00-04:00"
-base_checkpoint = "b3:..."
+base_snapshot = "b3:..."
 result = "build_failed"
 ```
 
@@ -360,7 +360,7 @@ Only two changes to the same function require intervention.
 
 ## Local backup model
 
-A Vault can have replicas, but the primary model is local.
+A grit repo can have replicas, but the primary model is local.
 
 ```
 Internal SSD
@@ -417,8 +417,8 @@ grit clean --safe
 
 Rules:
 
-* recent checkpoints remain protected;
-* pinned checkpoints remain forever;
+* recent snapshots remain protected;
+* pinned snapshots remain forever;
 * backup-only objects are never deleted accidentally;
 * deletion uses a quarantine period;
 * every cleanup produces a recovery manifest.
@@ -475,7 +475,7 @@ Good:
 
 ```
 Project protected
-Last checkpoint: 3 minutes ago
+Last snapshot: 3 minutes ago
 Current changes: 14 files
 Recoverable: yes
 Backup disk: current
