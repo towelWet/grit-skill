@@ -161,3 +161,11 @@ grit rejects the file-atom model, the central-remote default, and the footgun su
 2. Define the splitmap grammar (how files decompose into grains, per language).
 3. Spec command semantics (save/undo/sync state transitions).
 4. Only then scaffold the Rust crate — CLI-first per /cli-first.
+
+## Stall guards (2026-11-01)
+
+`.gritignore` at repo root is read as exclude patterns. `.build`, `.build-tmp`, `.venv`,
+`__pycache__`, `node_modules` are skipped at any depth. Objects use `F_BARRIERFSYNC`; only
+commit writes do full flush. File edited or deleted mid-snapshot is recorded as read, never
+an error. `grit verify` skips objects proven earlier and untouched; `grit verify --full`
+rereads all, and `grit gc` always does.

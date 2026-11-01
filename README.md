@@ -6,6 +6,8 @@ This is the AI skill / design spec that drives Claude Code when working on Grit.
 It holds settled design decisions, command surface, storage model, AI verb layer,
 and study notes so context never has to be re-derived session to session.
 
+![Grit status, history, and verify running on its own source](docs/images/grit.png)
+
 ## What this skill contains
 
 | File | Purpose |
